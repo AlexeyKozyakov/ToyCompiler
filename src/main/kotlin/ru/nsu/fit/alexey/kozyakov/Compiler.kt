@@ -16,10 +16,7 @@ class Compiler(private val parser: Parser,
 
     fun compile() {
         val parseTreeRoot = parser.parse()
-        if (parseTreeRoot == null) {
-            fail(parseTreeRoot, "Syntax error")
-        }
-        if (parseTreeRoot.hasError()) {
+        if (parseTreeRoot == null || parseTreeRoot.hasError()) {
             fail(parseTreeRoot, "Syntax error")
         }
         compileProgram(parseTreeRoot)
